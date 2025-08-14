@@ -1,6 +1,6 @@
 {
   "name": "@jswork/dotenv-flow-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "dotenv-flow cli.",
   "type": "module",
   "files": [
@@ -20,9 +20,9 @@
     ]
   },
   "keywords": [
-    "dotenv-flow-cli",
-    "javascript",
-    "templates"
+    "cli",
+    "dotenv",
+    "flow"
   ],
   "publishConfig": {
     "access": "public",
