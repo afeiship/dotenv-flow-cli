@@ -2,6 +2,8 @@
 
 import { Command, Option } from 'commander';
 import { createRequire } from 'module';
+import dotenvFlow from 'dotenv-flow';
+import { spawn } from 'child_process';
 
 const __dirname = new URL('../', import.meta.url).pathname;
 const require = createRequire(__dirname);
@@ -10,6 +12,8 @@ const program = new Command();
 
 program.version(pkg.version);
 program.addOption(new Option('-v, --verbose', 'show verbose log')).parse(process.argv);
+
+dotenvFlow.config();
 
 /**
  * @help: dotenv-flow-cli -h
@@ -28,7 +32,15 @@ class CliApp {
   }
 
   run() {
-    this.log('run cli: ', __dirname, this.args, this.opts, pkg.version);
+    // 相当于: node <script> <scriptArgs>
+    // 获取要执行的脚本路径
+    const script = this.args[0];
+    // 获取脚本参数
+    const scriptArgs = this.args.slice(1);
+    // 使用 node 子进程执行脚本，并继承当前终端的输入输出
+    const child = spawn('node', [script, ...scriptArgs], { stdio: 'inherit' });
+    // 子进程退出时，主进程也以相同的退出码退出
+    child.on('exit', (code) => process.exit(code));
   }
 }
 
