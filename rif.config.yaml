@@ -1,0 +1,15 @@
+name: js-cli-templates-rif
+files:
+  - "bin/*.*"
+  - "*"
+  - ".*"
+  - "!rif.config.yaml"
+replacements:
+  - from: /js-cli-description/g
+    to: dotenv-flow cli.
+  - from: /js-cli/g
+    to: "${PROJECT_NAME}"
+  - from: /jsc/g
+    to: dotenv-flow-cli
+  - from: "_JS_SCOPE_"
+    to: "jswork"
