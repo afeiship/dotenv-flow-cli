@@ -24,6 +24,10 @@
     "javascript",
     "templates"
   ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "license": "MIT",
   "devDependencies": {
     "dotenv-flow": "^4.1.0",
