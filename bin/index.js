@@ -13,7 +13,14 @@ const program = new Command();
 program.version(pkg.version);
 program.addOption(new Option('-v, --verbose', 'show verbose log')).parse(process.argv);
 
-dotenvFlow.config();
+dotenvFlow.config({
+  files: [
+    '.env',
+    `.env.${process.env.NODE_ENV}`, // '.env.development'
+    '.env.local',
+    `.env.${process.env.NODE_ENV}.local`, // '.env.development.local'
+  ],
+});
 
 /**
  * @help: dotenv-flow-cli -h
